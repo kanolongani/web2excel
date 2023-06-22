@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TVQ60B4X4W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TVQ60B4X4W');
+</script>
+
+  <title>Excel File Preview</title>
+  <!-- Add Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container-fluid bg-primary py-5 text-center">
+    <div class="container bg-white py-5 rounded">
+      <h1 class="mb-4">Excel File Preview: {{ table_name }}</h1>
+      <div class="table-responsive">
+        {{ table|safe }}  <!-- Render the HTML table -->
+      </div>
+       <a href="#" onclick="goBack()" class="btn btn-primary mt-4">Go Back</a>
+
+      <script>
+        function goBack() {
+          window.history.back();
+        }
+      </script>
+
+    </div>
+
+  </div>
+  
+  
+  <!-- Add Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

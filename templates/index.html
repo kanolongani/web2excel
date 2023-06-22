@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--made by kano-->
+  
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TVQ60B4X4W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TVQ60B4X4W');
+</script>
+  <title>WebTable2Excel - Generate Excel Files</title>
+  <!-- Add Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Add custom CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <style>
+    .website-heading {
+      font-size: 48px;
+      font-weight: bold;
+      text-align: left;
+      margin-bottom: 30px;
+      color: #333;
+      text-transform: uppercase;
+    }
+    /* Rest of your custom styles */
+
+    /* Add the loading spinner styles */
+    .loading-spinner {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .loading-spinner.active {
+      display: flex;
+    }
+    
+    .loader--ripple {
+      display: inline-block;
+      position: relative;
+      height: 64px;
+      width: 64px;
+    }
+    
+    .loader--ripple div {
+      position: absolute;
+      animation: loader--ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+      border: 4px solid #fff;
+      border-radius: 50%;
+      opacity: 1;
+    }
+    
+    .loader--ripple div:nth-child(2) {
+      animation-delay: -0.5s;
+    }
+    
+    @keyframes loader--ripple {
+      0% {
+        top: 28px;
+        left: 28px;
+        opacity: 1;
+        height: 0;
+        width: 0;
+      }
+      100% {
+        top: -1px;
+        left: -1px;
+        opacity: 0;
+        height: 58px;
+        width: 58px;
+      }
+    }
+
+    /* Add margin between Preview buttons */
+    .preview-button {
+      margin-bottom: 10px;
+    }
+    
+
+  </style>
+</head>
+<body>
+  <div class="container-fluid bg-primary py-5 text-center">
+    <h1 class="website-heading">WebTable2Excel</h1>
+    <div class="container bg-white py-5 rounded">
+      <h1 class="mb-4">Enter URL</h1>
+      <form id="generate-form" action="/process_url" method="POST">
+        <div class="form-group">
+          <input type="text" class="form-control" id="url" name="url" placeholder="Enter URL" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Generate Excel Files</button>
+      </form>
+      
+      <div id="loading-spinner" class="loading-spinner">
+        <div class="loader--ripple">
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    
+      {% if generated %}
+      <h2 class="mt-5">Generated Files:</h2>
+      <ul>
+        {% for file_path in file_paths %}
+        <li class="preview-button">
+          <span class="mr-2">{{ file_path }}</span>
+          <a href="/download_file/{{ file_path }}" class="btn btn-secondary mr-2">Download</a>
+          <a href="/preview_file/{{ file_path }}" class="btn btn-primary">Preview</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+  <!-- ... previous HTML code ... -->
+
+<!-- Add the About Me section -->
+  <section id="about-me" class="bg-light py-5">
+    <div class="container text-center">
+      <h2>About Me</h2>
+      <div class="mt-3 mb-4">
+        <a href="https://github.com/kanolongani" target="_blank" rel="noopener noreferrer">
+          <i aria-hidden="true" class="fab fa-github fa-2x mr-2"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/karan-longani/" target="_blank" rel="noopener noreferrer">
+          <i aria-hidden="true" class="fab fa-linkedin fa-2x ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-light py-3 text-center mb-4">
+    <div class="container">
+      <p>Designed and developed by Karan Longani</p>
+    </div>
+  </footer>
+
+
+
+
+
+
+
+<!-- ... remaining HTML code ... -->
+
+  
+  
+  <!-- Add Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Add custom JavaScript -->
+  <script>
+    document.getElementById("generate-form").addEventListener("submit", function() {
+      document.getElementById("loading-spinner").classList.add("active");
+    });
+  </script>
+</body>
+</html>
